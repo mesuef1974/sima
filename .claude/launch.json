@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "sima-preview",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8765", "--bind", "127.0.0.1", "--directory", "out/math_papers/v1"],
+      "port": 8765
+    },
+    {
+      "name": "sima-board",
+      "runtimeExecutable": "uv",
+      "runtimeArgs": ["run", "sima", "board", "--repo", "C:/Users/mesue/OneDrive/Documents/RailWay/math_papers", "--port", "8766"],
+      "port": 8766
+    }
+  ]
+}

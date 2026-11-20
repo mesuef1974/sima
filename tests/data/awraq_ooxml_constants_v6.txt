@@ -1,0 +1,15 @@
+SYMBOL_FONT = "Segoe UI Symbol"
+LRM = "‎"
+RLM = "‏"
+# ألوان هوية «أوراق» على الورق: النص حبر أسود، والعنابي للعناوين والشارات والخطوط الرئيسة، والذهبي للتزيين
+INK = "000000"
+SOFT = "4C535C"
+RULE = "7D848E"
+LINE = "B5BBC4"
+BRAND = "8E2433"
+BRAND_STRONG = "6F1137"
+SHADE = "F0DFE3"  # العنابي الخفيف: خلفية الملاحظات وخانات الأرقام
+ACCENT = "E3AB3C"
+WHITE = "FFFFFF"
+W = nsdecls("w")
+SWAPPED = {"left": "right", "right": "left"}

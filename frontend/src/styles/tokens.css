@@ -1,0 +1,22 @@
+/* المصدر الوحيد للألوان والخطوط والمسافات (هوية سِمة المعتمدة، اتجاه «حُكم مطبوع» v4: زوايا قائمة والحبوب وحدها مستديرة). كل لون خام يُعرَّف هنا وحده،
+   وكل متغير تستعمله بقية الملفات يجب أن يكون معرَّفًا هنا: يفرض ذلك designTokens.spec.ts وcontrast.spec.ts. */
+:root{color-scheme:light;
+--bg:#F5EDE1;--surface:#F9F4F1;--raised:#ECE7E3;--chip:#ECE7E3;--hover:#332B310d;--ink:#332B31;--ink2:#625B56;--ink3:#6E6762;
+--line:#D8D3CF;--line-strong:#89827D;--grid:#ECE7E3;--brand:#8C3542;--brand-ink:#6C1B2A;--brand-soft:#E8D2C9;--on-brand:#FFFFFF;
+--accent:#766034;--accent-soft:#D7CCB8;--focus:#4D6E82;--warn:#59421F;--warn-soft:#FFF3E3;--bad:#92271C;--good:#5A7156;--good-soft:#EBFBE8;--bad-soft:#FFF2EF;
+--color-mark-ink:#332B31;
+--paper:#FFFFFF;--paper-warm:#F7F4EE;--paper-ink:#555555;--scrim:#00000088;
+--font:"Cairo","Tahoma",sans-serif;--font-head:"Cairo","Tahoma",sans-serif;--font-num:"Cairo","Tahoma",sans-serif;
+--t-xs:.875rem;--t-sm:.875rem;--t-base:1rem;--t-md:1.1875rem;--t-lg:1.375rem;--t-xl:1.75rem;--t-2xl:2.25rem;
+--sp-1:.25rem;--sp-2:.5rem;--sp-3:.75rem;--sp-4:1rem;--sp-5:1.5rem;--sp-6:2rem;--r-sm:0px;--r-md:0px;--r-pill:999px;
+--side-w:15.5rem;--ease:cubic-bezier(.2,0,0,1);--dur:150ms}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;
+--bg:#1C1714;--surface:#2D2824;--raised:#423C37;--chip:#423C37;--hover:#ffffff12;--ink:#F9F4F1;--ink2:#BFB9B5;--ink3:#A39D98;
+--line:#625B56;--line-strong:#89827D;--grid:#2D2824;--brand:#D4858C;--brand-ink:#ECA4AA;--brand-soft:#432F2D;--on-brand:#1C1714;
+--accent:#968056;--accent-soft:#362E23;--focus:#69889B;--warn:#AF9B7F;--warn-soft:#382403;--bad:#F5A193;--good:#90A68C;--good-soft:#1D2E1B;--bad-soft:#530200;
+--color-mark-ink:#FFFFFF;}}
+:root[data-theme="dark"]{color-scheme:dark;
+--bg:#1C1714;--surface:#2D2824;--raised:#423C37;--chip:#423C37;--hover:#ffffff12;--ink:#F9F4F1;--ink2:#BFB9B5;--ink3:#A39D98;
+--line:#625B56;--line-strong:#89827D;--grid:#2D2824;--brand:#D4858C;--brand-ink:#ECA4AA;--brand-soft:#432F2D;--on-brand:#1C1714;
+--accent:#968056;--accent-soft:#362E23;--focus:#69889B;--warn:#AF9B7F;--warn-soft:#382403;--bad:#F5A193;--good:#90A68C;--good-soft:#1D2E1B;--bad-soft:#530200;
+--color-mark-ink:#FFFFFF;}

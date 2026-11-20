@@ -1,0 +1,94 @@
+{
+  "run": "20261113-010858-baseline",
+  "at": "2026-11-13T01:08:58+00:00",
+  "label": "baseline",
+  "until": "judge",
+  "config": {
+    "design_model": "claude-fable-5-2",
+    "effort_ideas": "high",
+    "effort": "medium",
+    "judge_model": "opus",
+    "blind_model": "sonnet",
+    "isolation": "low",
+    "bar": [
+      30,
+      3,
+      {
+        "idea": 4,
+        "craft": 4,
+        "distinct": 4
+      }
+    ],
+    "commit": "67fd851",
+    "dirty": true,
+    "references": "2b3556af483e"
+  },
+  "cases": [
+    {
+      "case": "eval_watad",
+      "reached": false,
+      "stopped": "بانتظار القراءة العمياء: D:\\sima\\out\\_eval\\20261113-010858-baseline\\eval_watad\\v1\\work\\REQUEST-blind.md",
+      "calls": 9,
+      "cost_usd": 10.0,
+      "seconds": 2258,
+      "requests": {
+        "thumbs": {
+          "calls": 2,
+          "cost_usd": 6.3103
+        },
+        "blind-thumbs": {
+          "calls": 2,
+          "cost_usd": 0.1978
+        },
+        "diverge": {
+          "calls": 1,
+          "cost_usd": 1.8654
+        },
+        "critique": {
+          "calls": 2,
+          "cost_usd": 0.9758
+        },
+        "blind": {
+          "calls": 1,
+          "cost_usd": 0.0913
+        },
+        "refine-blind": {
+          "calls": 1,
+          "cost_usd": 0.5559
+        }
+      },
+      "models": [
+        "claude-fable-5-2",
+        "claude-haiku-5-5",
+        "claude-sonnet-5-5"
+      ],
+      "thumbs": {
+        "ideas": 12,
+        "blocked": 2,
+        "exhausted": false,
+        "reach_mean": 0.61
+      },
+      "concepts": 5,
+      "audit_passed": 5,
+      "critique_rounds": 2,
+      "blind": {
+        "read": 5,
+        "blocked": 2
+      },
+      "judge": null
+    }
+  ],
+  "totals": {
+    "cases": 1,
+    "reached": 0,
+    "calls": 9,
+    "cost_usd": 10.0,
+    "judge_mean": null,
+    "judge_best_mean": null,
+    "pass_rate": null,
+    "criteria": {},
+    "thumb_block_rate": 0.167,
+    "blind_block_rate": 0.4,
+    "audit_pass_rate": 1.0
+  }
+}

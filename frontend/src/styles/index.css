@@ -1,0 +1,6 @@
+/* نقطة الدخول الوحيدة للأنماط. الترتيب مقصود: الخطوط، ثم الرموز، ثم الأساس، ثم الهيكل، ثم المكوّنات. */
+@import "./fonts.css";
+@import "./tokens.css";
+@import "./base.css";
+@import "./layout.css";
+@import "./components.css";

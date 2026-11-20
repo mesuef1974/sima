@@ -1,0 +1,198 @@
+/*
+  مصدر الهوية الوحيد: هوية «أوراق» v2 من سِمة (brand/math_papers/identity/tokens).
+  المكونات تستعمل هذه المتغيرات ولا تكتب لونًا أو حجمًا خامًا (يفرض ذلك styles/designTokens.test.ts)،
+  والتباين بين كل نص وخلفيته في الوضعين يفرضه styles/contrast.test.ts.
+
+  السمة: نهارية في :root، وليلية تلقائيًا بتفضيل النظام، أو يدويًا بـ data-theme="dark"/"light" على <html>
+  (مبدّل الترويسة). كتلتا الوضع الليلي متطابقتان حرفيًا؛ يفرض ذلك اختبار التباين أيضًا.
+  الانحراف الوحيد عن الهوية: brand-soft الليلي #3a1d28 بدل #3d3039 ليبقى لون العلامة عليه فوق 4.5:1.
+*/
+:root {
+  /* الأسطح */
+  --color-paper: #ffffff;
+  --color-surface: #f1f5fc;
+  --color-surface-sunken: #e3e8f0;
+  --color-sheet: #ffffff; /* الورقة المعروضة على الشاشة: بيضاء نهارًا */
+  --color-field: #ffffff;
+  --color-ink: #14171c;
+  --color-ink-soft: #5f6670;
+  --color-line: #cfd5dd;
+  --color-line-strong: #7d848e;
+  --color-grid: rgb(142 36 51 / 5%);
+
+  /* العلامة */
+  --color-brand: #8e2433;
+  --color-brand-strong: #6f1137;
+  --color-brand-soft: #f0dfe3;
+  --color-on-brand: #ffffff;
+  --color-sand: #886100; /* الذهبي كنص */
+  --color-sand-soft: #f9edd7;
+  --color-accent: #e3ab3c; /* الذهبي كتزيين فقط، لا يحمل نصًا */
+  /* الشعار: حبره لون العلامة نهارًا وأبيض ليلًا، والتمييز ثابت */
+  --color-mark-ink: #8e2433;
+  --color-mark-accent: #db943c;
+
+  /* الحالات */
+  --color-danger: #780200;
+  --color-danger-soft: #fff2ef;
+  --color-success: #21794a;
+  --color-success-soft: #deffe8;
+  --color-info: #1f5f99;
+  --color-info-soft: #eef6ff;
+
+  /* المستويات الثلاثة: لون لكل مستوى يُستعمل في الشارات فقط */
+  --color-level-k: #21794a;
+  --color-level-k-soft: #deffe8;
+  --color-level-a: #1f5f99;
+  --color-level-a-soft: #eef6ff;
+  --color-level-r: #8e2433;
+  --color-level-r-soft: #f0dfe3;
+
+  --color-focus: #2f6ca6;
+
+  /* الخطوط: Cairo مضمَّن محليًا (رخصة OFL) بلا طلب خارجي، ثم خطوط النظام العربية احتياطًا */
+  --font-sans: "Cairo", "Segoe UI", "Noto Sans Arabic", "Geeza Pro", Tahoma, Arial, sans-serif;
+  /* نصوص الرسوم: خط KaTeX المضمَّن (katex.min.css) كالمعادلات، فلا تتبدل بين جهاز المعلم والخادم */
+  --font-math: "KaTeX_Main", "Times New Roman", "Cambria Math", serif;
+  --font-mono: Consolas, "Cascadia Mono", monospace;
+  /* الورق: خط واحد مضمَّن (Noto Naskh Arabic، fonts.css) في الطباعة وPDF وWord، يحمل العربي واللاتيني */
+  --font-print: "Noto Naskh Arabic", "Cairo", "Segoe UI", "Geeza Pro", Tahoma, Arial, sans-serif;
+  --print-body: 13pt;
+  --print-title: 15pt;
+  --print-small: 11pt;
+  --print-footer: ""; /* تذييل الصفحة الجاري؛ تضبطه الكراسة عند عرضها */
+
+  /* سلم الخط من الهوية (نسبة 1.25)، والصغير لا ينزل عن 13px في الواجهة */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5625rem;
+  --text-2xl: clamp(1.75rem, 1.2rem + 2vw, 2.4375rem);
+  --weight-regular: 400;
+  --weight-medium: 600;
+  --weight-bold: 700;
+  --weight-heading: 800;
+  --leading-tight: 1.3;
+  --leading-body: 1.7;
+
+  /* المسافات على شبكة 4px */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* الزوايا حادة بنصف قطر الهوية 2px، وللبطاقات ضعفه */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgb(20 23 28 / 6%);
+  --shadow-md: 0 1px 2px rgb(20 23 28 / 5%), 0 4px 14px rgb(20 23 28 / 5%);
+
+  --border: 1px solid var(--color-line);
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--color-focus) 55%, transparent);
+
+  --duration: 160ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+
+  --container: 1000px;
+  --container-narrow: 440px;
+  --topbar-height: 64px;
+  --grid-size: 32px;
+
+  color-scheme: light;
+}
+
+/* الوضع الليلي على الشاشة فقط؛ الطباعة دائمًا بالأبيض والأسود من print.css */
+@media screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-paper: #14191f;
+    --color-surface: #242930;
+    --color-surface-sunken: #383e46;
+    --color-sheet: #242930;
+    --color-field: #14191f;
+    --color-ink: #f1f5fc;
+    --color-ink-soft: #b5bbc4;
+    --color-line: #4c535c;
+    --color-line-strong: #7d848e;
+    --color-grid: rgb(213 130 152 / 6%);
+
+    --color-brand: #d58298;
+    --color-brand-strong: #eda2b5;
+    --color-brand-soft: #3a1d28;
+    --color-on-brand: #14191f;
+    --color-sand: #e3ab3c;
+    --color-sand-soft: #3f392c;
+    --color-accent: #e3ab3c;
+    --color-mark-ink: #ffffff;
+
+    --color-danger: #ff9c8c;
+    --color-danger-soft: #540100;
+    --color-success: #6ab184;
+    --color-success-soft: #003219;
+    --color-info: #6fa3d8;
+    --color-info-soft: #002a4e;
+
+    --color-level-k: #6ab184;
+    --color-level-k-soft: #003219;
+    --color-level-a: #6fa3d8;
+    --color-level-a-soft: #002a4e;
+    --color-level-r: #d58298;
+    --color-level-r-soft: #3a1d28;
+
+    --color-focus: #6fa3d8;
+    --shadow-sm: none;
+    --shadow-md: none;
+    color-scheme: dark;
+  }
+}
+@media screen {
+  :root[data-theme="dark"] {
+    --color-paper: #14191f;
+    --color-surface: #242930;
+    --color-surface-sunken: #383e46;
+    --color-sheet: #242930;
+    --color-field: #14191f;
+    --color-ink: #f1f5fc;
+    --color-ink-soft: #b5bbc4;
+    --color-line: #4c535c;
+    --color-line-strong: #7d848e;
+    --color-grid: rgb(213 130 152 / 6%);
+
+    --color-brand: #d58298;
+    --color-brand-strong: #eda2b5;
+    --color-brand-soft: #3a1d28;
+    --color-on-brand: #14191f;
+    --color-sand: #e3ab3c;
+    --color-sand-soft: #3f392c;
+    --color-accent: #e3ab3c;
+    --color-mark-ink: #ffffff;
+
+    --color-danger: #ff9c8c;
+    --color-danger-soft: #540100;
+    --color-success: #6ab184;
+    --color-success-soft: #003219;
+    --color-info: #6fa3d8;
+    --color-info-soft: #002a4e;
+
+    --color-level-k: #6ab184;
+    --color-level-k-soft: #003219;
+    --color-level-a: #6fa3d8;
+    --color-level-a-soft: #002a4e;
+    --color-level-r: #d58298;
+    --color-level-r-soft: #3a1d28;
+
+    --color-focus: #6fa3d8;
+    --shadow-sm: none;
+    --shadow-md: none;
+    color-scheme: dark;
+  }
+}
