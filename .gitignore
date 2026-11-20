@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+out/**/work/
+*.log
+.env
+var/
+node_modules/
+frontend/node_modules/
+src/sima/web/frontend_dist/
+out/_eval/
+
+# غير منشور في المستودع العام
+/vendor/
+/out/

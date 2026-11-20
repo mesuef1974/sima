@@ -1,0 +1,51 @@
+[project]
+name = "sima"
+version = "0.1.0"
+description = "سِمة: خط إنتاج محلي يحوّل موجز علامة إلى حزمة هوية معتمدة بأمر واحد"
+authors = [{ name = "mesuef1974" }]
+requires-python = ">=3.12"
+dependencies = [
+    "pyyaml>=6.0",
+    "fonttools>=4.50",
+    "uharfbuzz>=0.40",
+    "skia-pathops>=0.8",
+    "playwright==1.64.1",
+    "django>=5.2,<5.3",
+    "django-ninja>=1.3",
+    "psycopg[binary]>=3.2",
+    "django-vite>=3.0",
+]
+
+[project.scripts]
+sima = "sima.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+
+[build-system]
+requires = ["uv_build>=0.13.7,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.uv]
+package = true
+
+[tool.ruff]
+line-length = 140
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF", "PL", "S", "BLE", "ISC", "FURB", "PERF"]
+ignore = [
+    "E501", "PLR0913", "PLR0912", "PLR0915", "PLR2004", "PLR0911", "PLR0914", "PLR0917", "PLR1702",
+    "RUF001", "RUF002", "RUF003", "S101", "S603", "S607", "PLC0415", "PLW2901", "PLR6301", "ISC003", "ISC004",
+    "PERF401", "S314", "S324",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "PLR", "RUF012", "PLC"]
+"src/sima/web/*/migrations/*" = ["RUF012", "E501"]

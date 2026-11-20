@@ -1,0 +1,152 @@
+/*
+  الورق: الورقة تتبع هوية «أوراق» بألوانها النهارية دائمًا (العنابي للعناوين والشارات والخطوط الرئيسة،
+  والذهبي للتزيين فقط، والنص والرسوم بحبر داكن). المتغيرات تُثبَّت على نطاق الورقة ‎.sheet‎ بقيم الوضع النهاري،
+  على الشاشة والورق معًا: ما يُعرض هو ما يُطبع، ولا يتسرب الوضع الداكن إلى الورقة ولا يحتاج مكوّن قواعد ألوان.
+  العنابي يُطبع رماديًا داكنًا واضحًا على الطابعات غير الملوّنة.
+  ترقيم الصفحات بصناديق هوامش @page؛ يدعمها Chromium 131+ (المتصفحات الأخرى تطبع بلا ترقيم).
+*/
+@page {
+  size: A4;
+  margin: 14mm 14mm 17mm;
+  /* تذييل الهوية على الورق: خط عنابي، اسم المنصة يمينًا، عنوان الورقة الجاري وسطًا (--print-footer)، ورقم الصفحة يسارًا */
+  @bottom-right {
+    content: "أوراق · مولّد أوراق الرياضيات";
+    font-family: var(--font-print);
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #8e2433;
+    border-top: 0.9pt solid #8e2433;
+    padding-top: 2mm;
+    vertical-align: top;
+    margin-top: 4mm;
+  }
+  @bottom-center {
+    content: var(--print-footer);
+    font-family: var(--font-print);
+    font-size: 8.5pt;
+    color: #4c535c;
+    border-top: 0.9pt solid #8e2433;
+    padding-top: 2mm;
+    vertical-align: top;
+    margin-top: 4mm;
+  }
+  @bottom-left {
+    content: "صفحة " counter(page) " من " counter(pages);
+    font-family: var(--font-print);
+    font-size: 8.5pt;
+    color: #14171c;
+    border-top: 0.9pt solid #8e2433;
+    padding-top: 2mm;
+    vertical-align: top;
+    margin-top: 4mm;
+  }
+}
+/*
+  نطاق الورقة، على الشاشة والورق: لوحة الألوان، وخط الورقة وحجمه وارتفاع سطره، ومقاس الصفحة بهوامشها.
+  الشاشة تعرض الورقة بعرض A4 وتصغّرها كلها (‎--paper-zoom‎) حين تضيق الحاوية، فلا يُعاد تدفق محتواها.
+  مكوّنات الورقة لا تحمل استعلامات عرض شاشة (يفرضه print.test.ts)؛ قواعد ‎@media print‎ فيها للفواصل بين الصفحات فقط.
+*/
+.sheet {
+  --color-paper: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #f4eef0; /* ترويسات الجداول: عنابي خفيف جدًا */
+  --color-sheet: #ffffff;
+  --color-field: #ffffff;
+  --color-ink: #14171c;
+  --color-ink-soft: #4c535c;
+  --color-line: #b5bbc4;
+  --color-line-strong: #7d848e;
+  --color-grid: transparent;
+  --color-brand: #8e2433;
+  --color-brand-strong: #6f1137;
+  --color-brand-soft: #f0dfe3;
+  --color-on-brand: #ffffff;
+  --color-sand: #886100;
+  --color-sand-soft: #f9edd7;
+  --color-accent: #e3ab3c;
+  --color-mark-ink: #8e2433;
+  --color-mark-accent: #db943c;
+  --color-danger: #780200;
+  --color-danger-soft: #fff2ef;
+  --color-success: #21794a;
+  --color-success-soft: #deffe8;
+  --color-info: #1f5f99;
+  --color-info-soft: #eef6ff;
+  --color-level-k: #21794a;
+  --color-level-k-soft: #deffe8;
+  --color-level-a: #1f5f99;
+  --color-level-a-soft: #eef6ff;
+  --color-level-r: #8e2433;
+  --color-level-r-soft: #f0dfe3;
+  --color-focus: #2f6ca6;
+  --border: 1px solid var(--color-line);
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--color-focus) 55%, transparent);
+  --leading-body: 1.6;
+  --font-sans: var(--font-print);
+
+  color-scheme: light;
+  inline-size: var(--page-width);
+  margin-block: var(--space-6) 0;
+  margin-inline: auto;
+  padding: var(--page-margin-block-start) var(--page-margin-inline) var(--page-margin-block-end);
+  zoom: var(--paper-zoom);
+  background: var(--color-sheet);
+  color: var(--color-ink);
+  /* الإطار خط خارجي لا حدّ: الحدّ يأكل من عرض الصفحة فيختلف التفاف الأسطر عن المطبوع */
+  outline: 1px solid var(--color-line);
+  box-shadow: var(--shadow-md);
+  font-family: var(--font-print);
+  font-size: var(--print-body);
+  line-height: var(--leading-body);
+}
+/* الورقة بعرض الصفحة دائمًا، فجداولها لا تُمرَّر ولا تُقصّ */
+.sheet .table-scroll {
+  overflow: visible;
+}
+.sheet-foot {
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-ink-soft);
+  font-size: var(--text-xs);
+  margin-block-start: var(--space-4);
+  padding-block-start: var(--space-2);
+  border-block-start: 1px solid var(--color-line);
+}
+
+@media print {
+  /* الصفحة وهوامشها من ‎@page‎، فالورقة بلا إطار ولا حشو ولا تصغير */
+  .sheet {
+    --shadow-sm: none;
+    --shadow-md: none;
+    --focus-ring: none;
+    inline-size: auto;
+    margin: 0;
+    padding: 0;
+    zoom: 1;
+    outline: 0;
+    box-shadow: none;
+  }
+  /* الخلفيات الملوّنة (الشارات وترويسات الجداول) تُطبع كما هي حتى من نافذة طباعة المتصفح */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  html,
+  body {
+    background: none;
+  }
+  body {
+    font-family: var(--font-print);
+    font-size: var(--print-body);
+  }
+  .no-print {
+    display: none !important;
+  }
+  .page {
+    padding: 0;
+  }
+  .container {
+    max-inline-size: none;
+    padding: 0;
+  }
+}

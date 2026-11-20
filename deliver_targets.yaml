@@ -1,0 +1,123 @@
+# مستودعات التسليم لكل مشروع: بعد اعتماد المالك لدليل الهوية يُسلَّم الإصدار آليًا بطاقةً لمشغّل المستودع.
+# المشروع غير المذكور هنا يبقى تسليمه بالأمر: uv run sima deliver briefs/<project>.yaml --repo <المستودع>
+# in_place: المشروع هو مستودع سِمة نفسه (المنصة تلبس هويتها): لا بطاقة ولا worktree؛ تُطبَّق الحزمة هنا ثم تُسجَّل نقطتها
+# بالأمر: uv run sima deliver briefs/<project>.yaml --in-place <نقطة git>
+sima:
+  in_place: true
+math_papers:
+  repo: D:/أوراق الرياضيات
+  static_prefix: /static/
+  # قرار المالك 2026-11-13: لون العلامة النهاري في التطبيق يوحَّد مع لون الشعار المعتمد عند التسليم (واجهته وقوالبه واختباراتها)
+  unify_brand: true
+  # قرار المالك 2026-11-14 (ق1): التطبيق يتبع الاتجاه المعتمد كاملًا نهارًا وليلًا (ورق وحبر وذهبي وحالات وزوايا).
+  # متغير رموز التطبيق ← دور الهوية (package/identity/tokens/tokens.css)؛ {light:, dark:} لما يختلف بين الوضعين (الغائب
+  # يُترك بقيمة التطبيق)، و{role:, times:} للأبعاد. البطاقة تسرد كل قيمة تغيّرت وكل متغير لوني خارج الخريطة.
+  apply_identity:
+    color-paper: bg
+    color-surface: surface
+    color-surface-sunken: raised
+    color-sheet: {dark: surface}   # الورقة المعروضة بيضاء نهارًا بقصد
+    color-field: {dark: bg}        # الحقل أبيض نهارًا بقصد
+    color-ink: text
+    color-ink-soft: text-muted
+    color-line: border
+    color-line-strong: border-strong
+    color-brand: brand
+    color-brand-strong: brand-strong
+    color-brand-soft: brand-soft
+    color-on-brand: on-brand
+    color-sand: accent-text
+    color-sand-soft: accent-soft
+    color-accent: accent
+    color-danger: error
+    color-danger-soft: error-soft
+    color-success: success
+    color-success-soft: success-soft
+    color-info: info
+    color-info-soft: info-soft
+    color-level-k: success
+    color-level-k-soft: success-soft
+    color-level-a: info
+    color-level-a-soft: info-soft
+    color-level-r: brand
+    color-level-r-soft: brand-soft
+    color-focus: focus
+    radius-sm: radius
+    radius-md: {role: radius, times: 2}
+    radius-lg: {role: radius, times: 2}
+  # الورقة المطبوعة (قرار المالك 2026-11-14 بعد دمج v7: ثبّتت جلسة «أوراق» ألوان الطباعة وWord بيدها لأن التسليم لم يغطّها):
+  # css: ملفات تُطبَّق عليها خريطة apply_identity بقيم النهار وحدها، وكل لون ثابت خارج المتغيرات يحمل قيمة متغير تغيّر يتبعه؛
+  # constants: ثوابت `NAME = "RRGGBB"` في ملف بايثون بدورها النهاري. ما لا يطابق متغيرًا يُسرد في البطاقة ولا يُمسّ.
+  apply_paper:
+    css:
+      - frontend/src/styles/print.css
+    # الورقة بيضاء بقصد (print.test.ts في «أوراق»): ورق الاتجاه وسطوحه لا تُطبَّق عليها
+    skip: [color-paper, color-surface, color-surface-sunken, color-sheet, color-field]
+    constants:
+      apps/papers/word/ooxml.py:
+        SOFT: text-muted
+        RULE: border-strong
+        LINE: border
+        BRAND_STRONG: brand-strong
+        SHADE: brand-soft
+        ACCENT: accent
+# منصة المدرسة (قرار المالك 2026-11-15): تطبيق Django بقوالب وstatic/css لا Vue ولا دفتر بطاقات، وجلستا 0501 و0601 خرجتا من الخدمة.
+# profile: django_static: مرحلة الألوان وحدها بالأمر `sima deliver briefs/shahaniya.yaml` (لا تسليم آلي)، فرعًا محليًا
+# claude/identity-shahaniya-vN في .claude/worktrees بلا push؛ والشعار والأيقونات والخطوط والزوايا مراحل لاحقة بقرارات منفصلة.
+# اختيارات المالك: لون العلامة والذهبي وTajawal وأيقونات الواجهة (141) والزوايا (10px) تبقى كما هي؛ الخطأ يبقى #DC2626؛
+# الأزرق والأخضر (skyline وpalm وsea) خارج لوحة الهوية؛ ما عدا ذلك يتبع الهوية الجديدة نهارًا وليلًا.
+shahaniya:
+  repo: D:/shschool_mvp
+  profile: django_static
+  styles:
+    - static/css/custom/10-foundation.css
+    - static/css/custom/40-themes.css
+  apply_identity:
+    maroon: {light: brand}                 # حشوُ الترويسة العنّابية ثابت في الوضعين (الأبيض فوقه لا ينقلب)
+    maroon-dark: {light: brand-strong}
+    maroon-light: {light: brand-600}
+    maroon-bg: brand-soft
+    maroon-border: {light: brand-200, dark: border-strong}
+    maroon-fg: {light: brand, dark: brand-strong}   # ليلًا brand يبلغ 3.87 فقط على raised
+    gold: accent
+    text-primary: text
+    text-secondary: {light: text-muted, dark: text}  # ليلًا text-muted يبلغ 4.03 على border
+    text-muted: text-muted
+    border: border
+    border-strong: border-strong
+    control-border: border-strong
+    surface: surface
+    surface-alt: raised
+    page-bg: bg
+    status-warning: warning
+    status-success: success
+    status-info: info
+    status-warning-bg: warning-soft
+    status-success-bg: success-soft
+    status-info-bg: info-soft
+    status-warning-fg: {light: warning}    # ألوان القراءة الليلية قيست على الأسطح الداكنة القديمة فتبقى
+    status-success-fg: {light: success}
+    status-info-fg: {light: info}
+# «مسك» (قرار المالك 2026-11-17): تسليم آلي بطاقةً لمشغّل D:/misk بعد اعتماد الدليل. رموز تطبيقه مصدر واحد في
+# frontend/src/static/brand/tokens.css (بند tokens)، سبعة متغيرات كلٌّ بـlight-dark(نهارية, ليلية)، تقرؤها الواجهة ولوحة Django.
+# ألوان التطبيق تتبع الاتجاه المعتمد بأمر المالك (2026-11-17): --accent لون العلامة نهارًا وbrand-strong ليلًا (brand الليلي
+# يبلغ 3.93 فقط على surface)؛ أزواج تباين التطبيق محاكاة في tests/test_delivery_misk.py.
+misk:
+  repo: D:/misk
+  static_prefix: /static/
+  tokens: frontend/src/static/brand/tokens.css
+  apply_identity:
+    bg: bg
+    surface: surface
+    ink: text
+    muted: text-muted
+    line: border
+    accent: {light: brand, dark: brand-strong}
+    risk: error
+  # نسخ الواجهة (تُبنى من frontend/ وحده) تطابق أصلها في brand/misk بايتًا بايتًا؛ اختبارها tests/test_brand.py في مسك
+  # (أسقط تسليمَ v10 الأول أنها بقيت على الهوية السابقة).
+  mirrors:
+    frontend/src/static/brand/mark.svg: brand/misk/misk-mark.svg
+    frontend/src/static/brand/motion.css: brand/misk/identity/motion.css
+    frontend/src/static/brand/motif-mono.svg: brand/misk/identity/patterns/motif-mono.svg
+    frontend/src/static/brand/icons/: brand/misk/identity/icons

@@ -1,0 +1,80 @@
+{
+  "$comment": "Brand color tokens template. Use as drop-in for tokens.css generation, ASE export, and check-contrast.py validation. Replace {brand} with project slug. All ratios computed against #FFFFFF and #000000 — verify with scripts/check-contrast.py.",
+  "brand": "{brand-slug}",
+  "version": "1.0.0",
+  "wcag_target": "AA",
+  "colors": {
+    "primary": {
+      "name": "{Brand} Primary",
+      "role": "primary",
+      "hex": "#0EA5A4",
+      "rgb": [14, 165, 164],
+      "cmyk": [92, 0, 1, 35],
+      "pantone": "PMS 7710 C",
+      "oklch": "oklch(65% 0.12 195)",
+      "tints": { "100": "#CFF8F7", "300": "#7FE3E2", "500": "#0EA5A4", "700": "#067270", "900": "#03413F" },
+      "contrast_on_white": 3.42,
+      "contrast_on_black": 6.14,
+      "usage": "buttons-primary, links, accents",
+      "do_not": "body text on white (fails AA — use 700 instead)"
+    },
+    "secondary": {
+      "name": "{Brand} Secondary",
+      "role": "secondary",
+      "hex": "#1F2937",
+      "rgb": [31, 41, 55],
+      "cmyk": [80, 70, 50, 60],
+      "pantone": "PMS 432 C",
+      "oklch": "oklch(28% 0.04 250)",
+      "contrast_on_white": 14.68,
+      "contrast_on_black": 1.43,
+      "usage": "headings, navigation, body text",
+      "do_not": "buttons (use primary)"
+    },
+    "accent": {
+      "name": "{Brand} Accent",
+      "role": "accent",
+      "hex": "#F59E0B",
+      "rgb": [245, 158, 11],
+      "cmyk": [0, 35, 96, 4],
+      "pantone": "PMS 1375 C",
+      "oklch": "oklch(75% 0.16 70)",
+      "contrast_on_white": 2.13,
+      "contrast_on_black": 9.87,
+      "usage": "CTAs, highlights, attention markers (≤10% of palette per 60-30-10 rule)",
+      "do_not": "text on white (fails AA — decorative-only on light bg)"
+    },
+    "neutral_light": {
+      "name": "Neutral Light",
+      "role": "neutral",
+      "hex": "#F9FAFB",
+      "rgb": [249, 250, 251],
+      "cmyk": [1, 0, 0, 1],
+      "oklch": "oklch(98% 0.005 250)",
+      "contrast_on_white": 1.04,
+      "contrast_on_black": 19.92,
+      "usage": "backgrounds, cards, surfaces"
+    },
+    "neutral_dark": {
+      "name": "Neutral Dark",
+      "role": "neutral",
+      "hex": "#111827",
+      "rgb": [17, 24, 39],
+      "cmyk": [85, 75, 50, 70],
+      "oklch": "oklch(20% 0.03 250)",
+      "contrast_on_white": 17.74,
+      "contrast_on_black": 1.18,
+      "usage": "dark mode background, high-emphasis text"
+    },
+    "system_success": { "hex": "#10B981", "role": "system", "informational": true, "wcag_required": "3:1 on adjacent bg" },
+    "system_error":   { "hex": "#EF4444", "role": "system", "informational": true, "wcag_required": "3:1 on adjacent bg" },
+    "system_warning": { "hex": "#F59E0B", "role": "system", "informational": true, "wcag_required": "3:1 on adjacent bg" }
+  },
+  "decorative_elements": {
+    "$comment": "Listed here so check-contrast.py SKIPS them per WCAG 1.4.11 exemption. Each MUST have brand-guide declaration — see templates/decorative-vs-informational.template.md.",
+    "examples": [
+      { "id": "logo-gold-dot", "rationale": "Pure ornament; logo recognizable without it." },
+      { "id": "background-gradient", "rationale": "Atmospheric; carries no info." }
+    ]
+  }
+}
